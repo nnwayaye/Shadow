@@ -5,8 +5,7 @@ export const revalidate = 60;
 export default async function HomePage() {
   const { data: novels, error } = await supabase
     .from("novels")
-    .select("id, title, synopsis, status")
-    .order("created_at", { ascending: false });
+    .select("id, title, synopsis, status");
 
   if (error) {
     return <p>ဝတ္ထုစာရင်း load လုပ်ရာတွင် အမှားရှိပါသည်: {error.message}</p>;
