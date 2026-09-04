@@ -16,7 +16,6 @@ import { cookies } from "next/headers";
 
     const novelId = typeof body.novel_id === "string" ? body.novel_id.trim() : "";
     const chapterNumber = Number(body.chapter_number);
-    const title = typeof body.title === "string" ? body.title.trim() : "";
     const content = typeof body.content === "string" ? body.content.trim() : "";
 
     if (!novelId || !Number.isInteger(chapterNumber) || chapterNumber < 1 || !content) {
@@ -25,7 +24,7 @@ import { cookies } from "next/headers";
 
     const { data, error } = await supabaseAdmin
       .from("chapters")
-      .insert({ novel_id: novelId, chapter_number: chapterNumber, title, content })
+      .insert({ novel_id: novelId, chapter_number: chapterNumber, content })
       .select("id")
       .single();
 
