@@ -3,10 +3,13 @@ import { supabaseAdmin } from "@/lib/supabaseAdmin";
 export const dynamic = "force-dynamic";
 
 export default async function DashboardPage() {
-  const { data: novels } = await supabaseAdmin
+  const { data: novels, error } = await supabaseAdmin
     .from("novels")
-    .select("id, title, status")
-    .order("created_at", { ascending: false });
+    .select("id, title, status");
+
+  if (error) {
+    return <p style={{ color: "#b42318" }}>Database error: {error.message}</p>;
+  }
 
   return (
     <div>
