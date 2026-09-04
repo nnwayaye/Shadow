@@ -8,7 +8,6 @@
     const [form, setForm] = useState({
       novel_id: initialNovelId,
       chapter_number: "",
-      title: "",
       content: "",
     });
     const [errorMsg, setErrorMsg] = useState("");
@@ -69,15 +68,6 @@
               required
               value={form.chapter_number}
               onChange={(event) => updateField("chapter_number", event.target.value)}
-              style={inputStyle}
-            />
-          </div>
-          <div>
-            <label style={labelStyle}>Chapter ခေါင်းစဉ် (optional)</label>
-            <input
-              name="title"
-              value={form.title}
-              onChange={(event) => updateField("title", event.target.value)}
               style={inputStyle}
             />
           </div>
