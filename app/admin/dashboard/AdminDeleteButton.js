@@ -1,10 +1,8 @@
 'use client';
 
-    import { useRouter } from "next/navigation";
     import { useState } from "react";
 
     export default function AdminDeleteButton({ endpoint, message, label = "ဖျက်မယ်", disabled = false, disabledReason = "" }) {
-    const router = useRouter();
     const [isDeleting, setIsDeleting] = useState(false);
     const [errorMsg, setErrorMsg] = useState("");
 
@@ -17,7 +15,7 @@
         const response = await fetch(endpoint, { method: "DELETE" });
         const result = await response.json().catch(() => ({}));
         if (!response.ok) throw new Error(result.error || "ဖျက်ရာတွင် အမှားရှိပါတယ်");
-        router.refresh();
+        window.location.reload();
       } catch (error) {
         setErrorMsg(error.message || "ဖျက်ရာတွင် အမှားရှိပါတယ်");
         setIsDeleting(false);

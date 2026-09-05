@@ -1,10 +1,8 @@
 'use client';
 
-    import { useRouter } from "next/navigation";
     import { useState } from "react";
 
     export default function NewChapterForm({ novels, initialNovelId }) {
-    const router = useRouter();
     const [form, setForm] = useState({
       novel_id: initialNovelId,
       chapter_number: "",
@@ -34,8 +32,7 @@
           throw new Error(result.error || "အခန်းထည့်ရာတွင် အမှားရှိပါတယ်");
         }
 
-        router.push("/admin/dashboard");
-        router.refresh();
+        window.location.assign("/admin/novel/" + form.novel_id);
       } catch (error) {
         setErrorMsg(error.message || "အခန်းထည့်ရာတွင် အမှားရှိပါတယ်");
         setIsSaving(false);

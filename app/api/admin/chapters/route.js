@@ -30,7 +30,11 @@ import { cookies } from "next/headers";
 
     if (error) {
       console.error("Create chapter failed", error);
-      return NextResponse.json({ error: "အခန်းထည့်ရာတွင် အမှားရှိပါတယ်။ အခန်းနံပါတ် ထပ်နေသလား စစ်ပေးပါ" }, { status: 500 });
+      const status = error.code === "23505" ? 409 : 500;
+      return NextResponse.json(
+        { error: status === 409 ? "ဒီအခန်းနံပါတ် ရှိပြီးသားပါ" : "အခန်းထည့်ရာတွင် အမှားရှိပါတယ်။ Database ကို စစ်ပေးပါ" },
+        { status },
+      );
     }
 
     return NextResponse.json({ ok: true, id: data.id }, { status: 201 });
