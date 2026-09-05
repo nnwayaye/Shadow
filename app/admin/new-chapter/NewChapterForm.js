@@ -80,7 +80,7 @@
               value={form.content}
               onChange={(event) => updateField("content", event.target.value)}
               style={{ ...inputStyle, fontFamily: "inherit", lineHeight: 1.7 }}
-              placeholder="Paragraph တစ်ခုချင်းစီကို Enter နှစ်ချက်နှိပ်ပြီး ခွဲရေးပါ"
+              placeholder="Paragraph တစ်ခုချင်းစီကို Enter တစ်ချက်နှိပ်ပြီး ခွဲရေးပါ"
             />
           </div>
           {errorMsg && <p style={errorStyle}>{errorMsg}</p>}

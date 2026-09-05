@@ -36,7 +36,7 @@ import { supabase } from "@/lib/supabaseClient";
     const nextChapter = currentIndex >= 0 && currentIndex < chapterNumbers.length - 1 ? chapterNumbers[currentIndex + 1] : null;
 
     const paragraphs = (chapterData.content || "")
-      .split(/\n\s*\n/)
+      .split(/\r?\n+/)
       .map((paragraph) => paragraph.trim())
       .filter(Boolean);
     const midPoint = Math.floor(paragraphs.length * 0.4);

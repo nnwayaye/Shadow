@@ -12,7 +12,7 @@
     const startIndex = (currentPage - 1) * PAGE_SIZE;
     const visibleChapters = chapters.slice(startIndex, startIndex + PAGE_SIZE);
     const synopsisParagraphs = (synopsis || "")
-      .split(/\n\s*\n/)
+      .split(/\r?\n+/)
       .map((paragraph) => paragraph.trim())
       .filter(Boolean);
 
