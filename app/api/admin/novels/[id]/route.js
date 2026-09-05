@@ -47,14 +47,19 @@ import { cookies } from "next/headers";
     export async function DELETE(request, { params }) {
     if (!isAdmin()) return NextResponse.json({ error: "Admin login လိုအပ်ပါတယ်" }, { status: 401 });
 
-    const { error: chaptersError } = await supabaseAdmin
+    const { data: chapters, error: chaptersError } = await supabaseAdmin
       .from("chapters")
-      .delete()
-      .eq("novel_id", params.id);
+      .select("id")
+      .eq("novel_id", params.id)
+      .limit(1);
 
     if (chaptersError) {
-      console.error("Delete novel chapters failed", chaptersError);
-      return NextResponse.json({ error: "ဝတ္ထုအခန်းများ ဖျက်ရာတွင် အမှားရှိပါတယ်" }, { status: 500 });
+      console.error("Check novel chapters failed", chaptersError);
+      return NextResponse.json({ error: "ဝတ္ထုအခန်းများ စစ်ရာတွင် အမှားရှိပါတယ်" }, { status: 500 });
+    }
+
+    if (chapters && chapters.length > 0) {
+      return NextResponse.json({ error: "အခန်းများရှိသေးလို့ အရင်ဆုံး အခန်းအားလုံးကို ဖျက်ပေးပါ" }, { status: 409 });
     }
 
     const { data, error } = await supabaseAdmin
