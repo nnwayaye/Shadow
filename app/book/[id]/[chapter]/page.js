@@ -33,36 +33,29 @@ import { supabase } from "@/lib/supabaseClient";
     const chapterNumbers = allChapters?.map((c) => c.chapter_number) || [];
     const currentIndex = chapterNumbers.indexOf(chapterData.chapter_number);
     const prevChapter = currentIndex > 0 ? chapterNumbers[currentIndex - 1] : null;
-    const nextChapter =
-      currentIndex >= 0 && currentIndex < chapterNumbers.length - 1
-        ? chapterNumbers[currentIndex + 1]
-        : null;
+    const nextChapter = currentIndex >= 0 && currentIndex < chapterNumbers.length - 1 ? chapterNumbers[currentIndex + 1] : null;
 
     const paragraphs = (chapterData.content || "")
-      .split("\n")
-      .filter((p) => p.trim() !== "");
-
+      .split(/\n\s*\n/)
+      .map((paragraph) => paragraph.trim())
+      .filter(Boolean);
     const midPoint = Math.floor(paragraphs.length * 0.4);
 
     return (
       <ReaderGuard>
         <div>
           <div style={{ fontSize: 13, color: "var(--muted)", marginBottom: 8 }}>
-            <a href={"/book/" + id} style={{ color: "var(--muted)" }}>
-              {novel?.title}
-            </a>
+            <a href={"/book/" + id} style={{ color: "var(--muted)" }}>{novel?.title}</a>
           </div>
-          <h1 style={{ fontSize: 22, marginBottom: 20 }}>
-            အခန်း {chapterData.chapter_number}
-          </h1>
+          <h1 style={{ fontSize: 22, marginBottom: 20 }}>အခန်း {chapterData.chapter_number}</h1>
 
           <AdSlot label="Top" />
 
-          <div style={{ lineHeight: 1.9, fontSize: 17 }}>
-            {paragraphs.map((para, i) => (
-              <div key={i}>
-                <p style={{ marginBottom: 16 }}>{para}</p>
-                {i === midPoint && <AdSlot label="Middle" />}
+          <div style={{ lineHeight: 2.05, fontSize: 17 }}>
+            {paragraphs.map((paragraph, index) => (
+              <div key={index}>
+                <p style={chapterParagraphStyle}>{paragraph}</p>
+                {index === midPoint && <AdSlot label="Middle" />}
               </div>
             ))}
           </div>
@@ -78,13 +71,6 @@ import { supabase } from "@/lib/supabaseClient";
     );
     }
 
-    const navBtnStyle = {
-    padding: "10px 16px",
-    background: "var(--surface)",
-    border: "1px solid var(--border)",
-    borderRadius: 8,
-    textDecoration: "none",
-    color: "var(--text)",
-    fontSize: 14,
-    };
+    const chapterParagraphStyle = { margin: "0 0 23px", textIndent: "1.5em", lineHeight: 2.05, whiteSpace: "pre-wrap" };
+    const navBtnStyle = { padding: "10px 16px", background: "var(--surface)", border: "1px solid var(--border)", borderRadius: 8, textDecoration: "none", color: "var(--text)", fontSize: 14 };
     
