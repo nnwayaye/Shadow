@@ -1,6 +1,5 @@
 import "./theme.css";
     import ThemeToggle from "./components/ThemeToggle";
-    import InstallAppButton from "./components/InstallAppButton";
     import PwaRegister from "./components/PwaRegister";
 
     export const metadata = {
@@ -30,7 +29,6 @@ import "./theme.css";
               <span>Shadow</span>
             </a>
             <div className="header-actions">
-              <InstallAppButton />
               <ThemeToggle />
             </div>
           </header>
