@@ -3,13 +3,13 @@
     import { useRouter } from "next/navigation";
     import { useState } from "react";
 
-    export default function AdminDeleteButton({ endpoint, message, label = "ဖျက်မယ်" }) {
+    export default function AdminDeleteButton({ endpoint, message, label = "ဖျက်မယ်", disabled = false, disabledReason = "" }) {
     const router = useRouter();
     const [isDeleting, setIsDeleting] = useState(false);
     const [errorMsg, setErrorMsg] = useState("");
 
     async function handleDelete() {
-      if (!window.confirm(message)) return;
+      if (disabled || !window.confirm(message)) return;
       setErrorMsg("");
       setIsDeleting(true);
 
@@ -29,11 +29,13 @@
         <button
           type="button"
           onClick={handleDelete}
-          disabled={isDeleting}
-          style={deleteButtonStyle}
+          disabled={isDeleting || disabled}
+          title={disabled ? disabledReason : "ဖျက်မယ်"}
+          style={{ ...deleteButtonStyle, ...(disabled ? disabledButtonStyle : {}) }}
         >
           {isDeleting ? "ဖျက်နေပါတယ်..." : label}
         </button>
+        {disabled && disabledReason && <span style={disabledTextStyle}>{disabledReason}</span>}
         {errorMsg && <span style={errorStyle}>{errorMsg}</span>}
       </span>
     );
@@ -49,5 +51,12 @@
     cursor: "pointer",
     };
 
+    const disabledButtonStyle = {
+    color: "#999",
+    borderColor: "#ddd",
+    cursor: "not-allowed",
+    };
+
+    const disabledTextStyle = { display: "block", color: "#888", fontSize: 11, marginTop: 4 };
     const errorStyle = { display: "block", color: "#b42318", fontSize: 12, marginTop: 4 };
     
