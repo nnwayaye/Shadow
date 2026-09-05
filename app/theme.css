@@ -24,112 +24,18 @@
     color-scheme: dark;
     }
 
-    * {
-    box-sizing: border-box;
-    }
-
-    html,
-    body {
-    min-height: 100%;
-    }
-
-    body {
-    background: var(--bg);
-    color: var(--text);
-    transition: background-color 180ms ease, color 180ms ease;
-    }
-
-    a {
-    color: inherit;
-    }
-
-    .site-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-    padding: 12px 20px;
-    border-bottom: 1px solid var(--border);
-    background: var(--surface);
-    position: sticky;
-    top: 0;
-    z-index: 10;
-    }
-
-    .brand-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 9px;
-    min-width: 0;
-    color: var(--text);
-    font-size: 21px;
-    font-weight: 800;
-    text-decoration: none;
-    letter-spacing: 0.02em;
-    }
-
-    .brand-logo {
-    width: 38px;
-    height: 38px;
-    flex: 0 0 auto;
-    border-radius: 9px;
-    object-fit: cover;
-    }
-
-    .header-actions {
-    display: flex;
-    align-items: center;
-    gap: 7px;
-    flex: 0 0 auto;
-    }
-
-    .theme-toggle,
-    .install-button {
-    border: 1px solid var(--border);
-    border-radius: 999px;
-    background: var(--surface);
-    color: var(--text);
-    padding: 7px 10px;
-    font: inherit;
-    font-size: 12px;
-    cursor: pointer;
-    white-space: nowrap;
-    }
-
-    .theme-toggle:hover,
-    .install-button:hover {
-    border-color: var(--accent);
-    }
-
-    .install-button {
-    color: var(--accent);
-    }
-
-    .reader-protected,
-    .reader-protected * {
-    -webkit-user-select: none;
-    user-select: none;
-    -webkit-touch-callout: none;
-    }
-
-    @media (max-width: 520px) {
-    .site-header {
-      padding: 10px 14px;
-    }
-
-    .brand-link {
-      font-size: 19px;
-    }
-
-    .brand-logo {
-      width: 34px;
-      height: 34px;
-    }
-
-    .theme-toggle,
-    .install-button {
-      padding: 6px 8px;
-      font-size: 11px;
-    }
-    }
+    * { box-sizing: border-box; }
+    html, body { min-height: 100%; }
+    body { background: var(--bg); color: var(--text); transition: background-color 180ms ease, color 180ms ease; }
+    a { color: inherit; }
+    .site-header { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 20px; border-bottom: 1px solid var(--border); background: var(--surface); position: sticky; top: 0; z-index: 10; }
+    .brand-link { display: inline-flex; align-items: center; gap: 9px; min-width: 0; color: var(--text); font-size: 21px; font-weight: 800; text-decoration: none; letter-spacing: 0.02em; }
+    .brand-logo { width: 38px; height: 38px; flex: 0 0 auto; border-radius: 9px; object-fit: cover; }
+    .header-actions { display: flex; align-items: center; gap: 7px; flex: 0 0 auto; }
+    .theme-toggle, .install-button { border: 1px solid var(--border); border-radius: 999px; background: var(--surface); color: var(--text); padding: 7px 10px; font: inherit; font-size: 12px; cursor: pointer; white-space: nowrap; }
+    .theme-toggle:hover, .install-button:hover { border-color: var(--accent); }
+    .install-button { color: var(--accent); }
+    .reader-protected, .reader-protected * { -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
+    @media print { .reader-protected { display: none !important; } }
+    @media (max-width: 520px) { .site-header { padding: 10px 14px; } .brand-link { font-size: 19px; } .brand-logo { width: 34px; height: 34px; } .theme-toggle, .install-button { padding: 6px 8px; font-size: 11px; } }
     
