@@ -1,4 +1,5 @@
 import { supabase } from "@/lib/supabaseClient";
+    import ReaderGuard from "@/app/components/ReaderGuard";
 
     export const revalidate = 60;
 
@@ -16,35 +17,37 @@ import { supabase } from "@/lib/supabaseClient";
     }
 
     return (
-      <div>
-        <h1 style={{ fontSize: 24, marginBottom: 20 }}>ဝတ္ထုများ</h1>
-        <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
-          {novels.map((novel) => (
-            <a
-              key={novel.id}
-              href={"/book/" + novel.id}
-              style={{
-                display: "block",
-                padding: 16,
-                background: "var(--surface)",
-                borderRadius: 10,
-                textDecoration: "none",
-                color: "var(--text)",
-                border: "1px solid var(--border)",
-              }}
-            >
-              <div style={{ fontSize: 18, fontWeight: 700 }}>{novel.title}</div>
-              <div style={{ fontSize: 13, color: "var(--muted)", marginTop: 4 }}>
-                {novel.status === "completed" ? "✅ ပြီးပြီ" : "🔥 ဆက်လက်ရေးနေဆဲ"}
-              </div>
-              <p style={{ fontSize: 14, color: "var(--muted)", marginTop: 8 }}>
-                {novel.synopsis?.slice(0, 120)}
-                {novel.synopsis?.length > 120 ? "..." : ""}
-              </p>
-            </a>
-          ))}
+      <ReaderGuard>
+        <div>
+          <h1 style={{ fontSize: 24, marginBottom: 20 }}>ဝတ္ထုများ</h1>
+          <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+            {novels.map((novel) => (
+              <a
+                key={novel.id}
+                href={"/book/" + novel.id}
+                style={{
+                  display: "block",
+                  padding: 16,
+                  background: "var(--surface)",
+                  borderRadius: 10,
+                  textDecoration: "none",
+                  color: "var(--text)",
+                  border: "1px solid var(--border)",
+                }}
+              >
+                <div style={{ fontSize: 18, fontWeight: 700 }}>{novel.title}</div>
+                <div style={{ fontSize: 13, color: "var(--muted)", marginTop: 4 }}>
+                  {novel.status === "completed" ? "✅ ပြီးပြီ" : "🔥 ဆက်လက်ရေးနေဆဲ"}
+                </div>
+                <p style={{ fontSize: 14, color: "var(--muted)", marginTop: 8 }}>
+                  {novel.synopsis?.slice(0, 120)}
+                  {novel.synopsis?.length > 120 ? "..." : ""}
+                </p>
+              </a>
+            ))}
+          </div>
         </div>
-      </div>
+      </ReaderGuard>
     );
     }
     
