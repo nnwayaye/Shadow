@@ -1,9 +1,11 @@
-import { supabaseAdmin } from "@/lib/supabaseAdmin";
+    import { unstable_noStore as noStore } from "next/cache";
+    import { supabaseAdmin } from "@/lib/supabaseAdmin";
     import AdminDeleteButton from "./AdminDeleteButton";
 
     export const dynamic = "force-dynamic";
 
     export default async function DashboardPage() {
+    noStore();
     const [{ data: novels, error }, { data: chapters, error: chaptersError }] = await Promise.all([
       supabaseAdmin.from("novels").select("id, title, status"),
       supabaseAdmin.from("chapters").select("id, novel_id, chapter_number"),

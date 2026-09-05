@@ -1,6 +1,8 @@
 import { supabaseAdmin } from "@/lib/supabaseAdmin";
     import NewChapterForm from "./NewChapterForm";
 
+    export const dynamic = "force-dynamic";
+
     export default async function NewChapterPage({ searchParams }) {
     const { novel_id: initialNovelId } = searchParams;
     const { data: novels, error } = await supabaseAdmin

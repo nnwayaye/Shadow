@@ -1,4 +1,4 @@
-const CACHE_NAME = "shadow-v2";
+const CACHE_NAME = "shadow-v3";
 
     self.addEventListener("install", () => self.skipWaiting());
 
@@ -13,6 +13,7 @@ const CACHE_NAME = "shadow-v2";
     if (event.request.method !== "GET") return;
     const url = new URL(event.request.url);
     if (url.origin !== self.location.origin) return;
+    if (url.pathname.startsWith("/admin") || url.pathname.startsWith("/api/admin")) return;
 
     event.respondWith(
       fetch(event.request)
