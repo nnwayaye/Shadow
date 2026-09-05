@@ -1,5 +1,6 @@
 import { supabase } from "@/lib/supabaseClient";
     import AdSlot from "@/app/components/AdSlot";
+    import ReaderGuard from "@/app/components/ReaderGuard";
 
     export const revalidate = 60;
 
@@ -44,44 +45,46 @@ import { supabase } from "@/lib/supabaseClient";
     const midPoint = Math.floor(paragraphs.length * 0.4);
 
     return (
-      <div>
-        <div style={{ fontSize: 13, color: "#888", marginBottom: 8 }}>
-          <a href={"/book/" + id} style={{ color: "#888" }}>
-            {novel?.title}
-          </a>
+      <ReaderGuard>
+        <div>
+          <div style={{ fontSize: 13, color: "var(--muted)", marginBottom: 8 }}>
+            <a href={"/book/" + id} style={{ color: "var(--muted)" }}>
+              {novel?.title}
+            </a>
+          </div>
+          <h1 style={{ fontSize: 22, marginBottom: 20 }}>
+            အခန်း {chapterData.chapter_number}
+          </h1>
+
+          <AdSlot label="Top" />
+
+          <div style={{ lineHeight: 1.9, fontSize: 17 }}>
+            {paragraphs.map((para, i) => (
+              <div key={i}>
+                <p style={{ marginBottom: 16 }}>{para}</p>
+                {i === midPoint && <AdSlot label="Middle" />}
+              </div>
+            ))}
+          </div>
+
+          <AdSlot label="Bottom" />
+
+          <div style={{ display: "flex", justifyContent: "space-between", marginTop: 30, gap: 10 }}>
+            {prevChapter ? <a href={"/book/" + id + "/" + prevChapter} style={navBtnStyle}>← အရင်အခန်း</a> : <span />}
+            {nextChapter ? <a href={"/book/" + id + "/" + nextChapter} style={navBtnStyle}>နောက်အခန်း →</a> : <span />}
+          </div>
         </div>
-        <h1 style={{ fontSize: 22, marginBottom: 20 }}>
-          အခန်း {chapterData.chapter_number}
-        </h1>
-
-        <AdSlot label="Top" />
-
-        <div style={{ lineHeight: 1.9, fontSize: 17 }}>
-          {paragraphs.map((para, i) => (
-            <div key={i}>
-              <p style={{ marginBottom: 16 }}>{para}</p>
-              {i === midPoint && <AdSlot label="Middle" />}
-            </div>
-          ))}
-        </div>
-
-        <AdSlot label="Bottom" />
-
-        <div style={{ display: "flex", justifyContent: "space-between", marginTop: 30, gap: 10 }}>
-          {prevChapter ? <a href={"/book/" + id + "/" + prevChapter} style={navBtnStyle}>← အရင်အခန်း</a> : <span />}
-          {nextChapter ? <a href={"/book/" + id + "/" + nextChapter} style={navBtnStyle}>နောက်အခန်း →</a> : <span />}
-        </div>
-      </div>
+      </ReaderGuard>
     );
     }
 
     const navBtnStyle = {
     padding: "10px 16px",
-    background: "#fff",
-    border: "1px solid #ddd",
+    background: "var(--surface)",
+    border: "1px solid var(--border)",
     borderRadius: 8,
     textDecoration: "none",
-    color: "#222",
+    color: "var(--text)",
     fontSize: 14,
     };
     
