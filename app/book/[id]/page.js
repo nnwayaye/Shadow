@@ -24,7 +24,7 @@ import { supabase } from "@/lib/supabaseClient";
     return (
       <div>
         <h1 style={{ fontSize: 24, marginBottom: 8 }}>{novel.title}</h1>
-        <div style={{ fontSize: 13, color: "#888", marginBottom: 16 }}>
+        <div style={{ fontSize: 13, color: "var(--muted)", marginBottom: 16 }}>
           {novel.status === "completed" ? "✅ ပြီးပြီ" : "🔥 ဆက်လက်ရေးနေဆဲ"}
           {" · "}
           {chapters?.length || 0} ပိုင်း
@@ -41,11 +41,11 @@ import { supabase } from "@/lib/supabaseClient";
                 style={{
                   display: "block",
                   padding: "12px 16px",
-                  background: "#fff",
+                  background: "var(--surface)",
                   borderRadius: 8,
                   textDecoration: "none",
-                  color: "#222",
-                  border: "1px solid #eee",
+                  color: "var(--text)",
+                  border: "1px solid var(--border)",
                 }}
               >
                 အခန်း {ch.chapter_number}
