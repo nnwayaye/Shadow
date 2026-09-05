@@ -34,11 +34,11 @@ import { supabase } from "@/lib/supabaseClient";
                 style={{
                   display: "block",
                   padding: 16,
-                  background: "var(--surface)",
+                  background: "var(--card-surface)",
                   borderRadius: 10,
                   textDecoration: "none",
                   color: "var(--text)",
-                  border: "1px solid var(--border)",
+                  border: "1px solid var(--card-border)",
                 }}
               >
                 <div style={{ fontSize: 19, fontWeight: 700, textAlign: "center" }}>{novel.title}</div>
