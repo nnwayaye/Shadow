@@ -96,7 +96,7 @@
 
     const tabBarStyle = { display: "flex", borderBottom: "1px solid var(--border)", marginTop: 24 };
     const tabStyle = (active) => ({ flex: 1, padding: "13px 10px", border: "none", borderBottom: active ? "3px solid var(--accent)" : "3px solid transparent", background: "transparent", color: active ? "var(--accent)" : "var(--muted)", font: "inherit", fontWeight: 700, cursor: "pointer" });
-    const summaryParagraphStyle = { margin: "0 0 22px", lineHeight: 2.05, whiteSpace: "pre-wrap" };
+    const summaryParagraphStyle = { margin: "0 0 34px", textIndent: "1.5em", lineHeight: 2.05, whiteSpace: "pre-wrap" };
     const paginationStyle = { display: "flex", alignItems: "center", gap: 4, marginBottom: 12, overflowX: "auto" };
     const pageNumberStyle = (active) => ({ minWidth: 36, height: 36, padding: "0 10px", border: "1px solid var(--card-border)", borderRadius: 7, background: active ? "var(--accent)" : "var(--card-surface)", color: active ? "#fff" : "var(--text)", font: "inherit", cursor: "pointer" });
     const pageButtonStyle = (disabled) => ({ minWidth: 36, height: 36, padding: "0 10px", border: "1px solid var(--card-border)", borderRadius: 7, background: disabled ? "var(--surface)" : "var(--card-surface)", color: disabled ? "var(--muted)" : "var(--text)", font: "inherit", cursor: disabled ? "not-allowed" : "pointer" });

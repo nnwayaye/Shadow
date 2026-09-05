@@ -71,6 +71,6 @@ import { supabase } from "@/lib/supabaseClient";
     );
     }
 
-    const chapterParagraphStyle = { margin: "0 0 23px", lineHeight: 2.05, whiteSpace: "pre-wrap" };
+    const chapterParagraphStyle = { margin: "0 0 34px", textIndent: "1.5em", lineHeight: 2.05, whiteSpace: "pre-wrap" };
     const navBtnStyle = { padding: "10px 16px", background: "var(--surface)", border: "1px solid var(--border)", borderRadius: 8, textDecoration: "none", color: "var(--text)", fontSize: 14 };
     
